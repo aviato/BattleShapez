@@ -2,68 +2,49 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class CharacterBase : MonoBehaviour
 {
-
     public Animator anim;
     public Transform mTarget;
-    
     public int myHealth;
-    public bool touching;
-
-    //public float mSpeed = 3.0f;
-
     public PlayerStats ps;
     public EnemyStats es;
-
-
-
+    public Slider healthSlider;
     public NavMeshAgent agent;
-
     public float EPSILON;
+    //public float mSpeed = 3.0f;
 
     // Use this for initialization
     void Start()
     {
-       
+
     }
-
-
 
     // Update is called once per frame
     void Update()
     {
 
-
     }
-
 
     public void takeDamage(int hurts)
     {
-      
+        Debug.Log("Taking " + hurts + " damage");
 
         myHealth -= hurts;
-
-     
 
         if (myHealth <= 0)
         {
             Die();
-
         }
     }
-  
 
     public void Die()
     {
         Destroy(gameObject);
         print("dead");
     }
-
-
-
-
 
     public void Guidance()
     {
@@ -85,7 +66,6 @@ public class CharacterBase : MonoBehaviour
         else
         {
             anim.SetInteger("AnimPar", 1);
-            
         }
     }
 

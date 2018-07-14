@@ -4,53 +4,14 @@ using UnityEngine;
 
 public class Player : CharacterBase
 {
-
-
-    
-
     // Use this for initialization
     void Start()
     {
-        
-    }
-
-    void OnTriggerEnter(Collider col)
-    {
-        if (col.gameObject.tag == "ECube" && touching == false)
+        Weapon weapon = gameObject.GetComponentInChildren(typeof(Weapon)) as Weapon;
+        if (weapon != null)
         {
-            
-            print("PlayerHitByCube " + myHealth);
-            takeDamage(es.damageCube);
-            touching = true;
+            weapon.shooter = transform;
         }
-        else if (col.gameObject.tag == "ESphere" && touching == false)
-        {
-            print("PlayerHitBySphere " + myHealth);
-            takeDamage(es.damageSphere);
-            touching = true;
-        }
-        else if (col.gameObject.tag == "ECylinder" && touching == false)
-        {
-            print("PlayerHitByCylinder " + myHealth);
-            takeDamage(es.damageCylinder);
-            touching = true;
-        }
-        else if (col.gameObject.tag == "EPyramid" && touching == false)
-        {
-            print("PlayerHitByPyramid " + myHealth);
-            takeDamage(es.damagePyramid);
-            touching = true;
-        }
-
-    }
-
-    void OnTriggerExit()
-    {
-        if(touching == true)
-        {
-            touching = false;
-        }
-        
         
     }
 
@@ -60,7 +21,6 @@ public class Player : CharacterBase
       
 
     }
-
 
     public void FindClosestEnemy()
     {
